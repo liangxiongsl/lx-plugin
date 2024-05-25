@@ -1,7 +1,7 @@
 {
 	"id": "lx-plugin",
 	"name": "lx plugin",
-	"version": "1.0.0",
+	"version": "1.0.3",
 	"minAppVersion": "0.15.0",
 	"description": "lx example plugin",
 	"author": "Obsidian",

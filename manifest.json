@@ -6,6 +6,6 @@
 	"description": "lx example plugin",
 	"author": "Obsidian",
 	"authorUrl": "https://github.com/liangxiongsl",
-	"fundingUrl": "https://github.com/liangxiongsl",
+	"fundingUrl": "https://github.com/liangxiongsl/lx-plugin",
 	"isDesktopOnly": false
 }

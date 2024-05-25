@@ -1,7 +1,7 @@
 import {App, Modal, Notice, Plugin, PluginSettingTab, Setting, Menu, ItemView} from 'obsidian';
-import {WorkspaceLeaf,View} from 'obsidian'
-import {createApp} from 'vue'
-import sfc from './sfc.vue'
+import {WorkspaceLeaf,View,FileView,MarkdownView,EditableFileView,MarkdownSubView} from 'obsidian'
+// import {createApp} from 'vue'
+// import sfc from './sfc.vue'
 
 // Remember to rename these classes and interfaces!
 
@@ -36,20 +36,19 @@ export default class MyPlugin extends Plugin {
 
 		this.registerView('my-view-id', (leaf)=>new MyView(leaf, this))
 
-		// let leaf = this.app.workspace.getLeaf(true)
-		// await leaf.setViewState({type: 'my-view-id', active: true})
-		// this.app.workspace.revealLeaf(leaf)
-
+		let leaf = this.app.workspace.getLeaf(true)
+		await leaf.setViewState({type: 'my-view-id', active: true})
+		this.app.workspace.revealLeaf(leaf)
 
 		// let leaf1 = this.app.workspace.createLeafBySplit(leaf, 'horizontal', true)
 		// await leaf1.setViewState({type: 'my-view-id', active: true})
 		// this.app.workspace.revealLeaf(leaf1)
 
 		// this.app.workspace.iterateRootLeaves((leaf)=>leaf.setGroup('test'))
-		this.app.workspace.iterateAllLeaves((leaf)=>{
-			console.log(leaf.getViewState().type)
-			leaf.getViewState()
-		})
+		// this.app.workspace.iterateAllLeaves((leaf)=>{
+		// 	console.log(leaf.getViewState().type)
+		// 	leaf.getViewState()
+		// })
 
 	}
 
@@ -149,6 +148,18 @@ class MyView extends ItemView{
 		return "my-view-type";
 	}
 	async onOpen(){
-		createApp(sfc, {ob: this.ob}).mount(this.containerEl)
+		// createApp(sfc, {ob: this.ob}).mount(this.containerEl)
+		let tb = document.createElement('table')
+		for (let i = 0; i < 5; i++) {
+			let tr = document.createElement('tr')
+			for (let j = 0; j < 5; j++) {
+				let td = document.createElement('td')
+				td.setText(`${i}-${j}`)
+				tr.appendChild(td)
+			}
+			tb.appendChild(tr)
+		}
+		tb.setAttr('border', '1')
+		this.contentEl.append(tb)
 	}
 }
